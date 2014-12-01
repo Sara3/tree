@@ -1,0 +1,58 @@
+//----------------------------------------------------------------------------
+// File -------- main.cpp
+// Programmer -- Sabera Daqiq
+// 
+// This program search for an interger in the tree
+//
+// This file contains only the main program.
+//----------------------------------------------------------------------------
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <fstream>
+using namespace std;
+#include "binarysearchtree.h"
+//----------------------------------------------------------------------------
+// main program
+//----------------------------------------------------------------------------
+int main(){
+    ifstream inFile;
+    binarysearchtree s;
+	int numbers;
+	int target;
+	int listSize;
+
+    inFile.open("program05in.txt");
+    if(inFile.fail()){
+		cout<<"Input file opening failed  "<<endl;
+		exit(1);
+    }
+    inFile>>listSize;
+    for(int i=0; i<=listSize; i++){
+		inFile>>numbers;
+		s.insert(numbers);
+    }
+	cout<<"Enter and interger greater than 0:  ";
+	cin>>target; 
+	cout<<endl;
+	while(target>=0){
+		if (s.search(target)){
+			cout<<"We have the number you entered! "<<endl;
+			cout<<endl;
+		}
+		else {
+			cout<<"We could not find the number you entered "<<endl;
+			cout<<endl;
+			}
+		cout<<"Enter and interger greater than 0:  ";
+		cin>>target;
+		cout<<endl;
+	}
+	if(s.isEmpty()){
+		cout<<endl;
+		cout<<"The tree is Empty! "<<endl;
+		cout<<endl;
+	}
+    inFile.close();
+    return 0;
+}
