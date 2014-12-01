@@ -1,0 +1,149 @@
+//---------------------------------------------------------
+// File--------main.cpp
+// Programmer--Sabera Daqiq
+
+// This program search an entiry in a tree 
+//---------------------------------------------------------
+#include <iostream>
+#include <string>
+#include <queue>
+#include <stdlib.h>
+using namespace std;
+#include "binarysearchtree.h"
+//-------------------------------------------------------------------------
+//bool binarysearchtree::isEmpty()
+//This checks of the tree is empty
+// Input parameters:
+//    None
+// Output parameters:
+//    None
+// Return value:
+//    trure or false
+//-------------------------------------------------------------------------
+bool binarysearchtree::isEmpty(){
+	if(root==NULL)
+		return true;
+	else 
+		return false; 
+}
+//-------------------------------------------------------------------------
+//void binarysearchtree::show(treeNode*root)
+//This displays 
+// Input parameters:
+//    root
+// Output parameters:
+//    None
+// Return value:
+//    None
+//-------------------------------------------------------------------------
+void binarysearchtree::show(treeNode*root){
+	if (root!=NULL){
+		cout<<root->data;
+		show(root->left);
+		show(root->right);
+	}
+	return;
+}
+//-------------------------------------------------------------------------
+//bool binarysearchtree::search(int target)
+// with this function I can call the show function above from the main program
+// Input parameters:
+//    None
+// Output parameters:
+//    None
+// Return value:
+//    None
+//-------------------------------------------------------------------------
+void binarysearchtree::show(){
+	show(root);
+}
+//-------------------------------------------------------------------------
+//bool binarysearchtree::search(treeNode*root, int target)
+//This perform the search
+// Input parameters:
+//    root, target
+// Output parameters:
+//    None
+// Return value:
+//    true/false
+//-------------------------------------------------------------------------
+bool binarysearchtree::search(treeNode*root, int target){
+	if (root==NULL)
+		return false;
+	if(root->data==target)
+		return true;
+	else if (target<root->data)
+			return search(root->left, target);
+		else 
+			return search(root->right, target);
+}
+//-------------------------------------------------------------------------
+//bool binarysearchtree::search(int target)
+//This function call the above function from the main program
+// Input parameters:
+//    Target
+// Output parameters:
+//    None
+// Return value:
+//    true/false
+//-------------------------------------------------------------------------
+bool binarysearchtree::search(int target){
+	if (search(root, target))
+		return true;
+	else 
+		return false; 
+}
+//-------------------------------------------------------------------------
+//void binarysearchtree::insert(treeNode*&root, int item)
+//This Inserts a number
+// Input parameters:
+//    root, item
+// Output parameters:
+//    root
+// Return value:
+//    none
+//-------------------------------------------------------------------------
+void binarysearchtree::insert(treeNode*&root, int item){
+	if (root==NULL){
+		root =new treeNode();
+		root->left=root->right=NULL;
+		root->data=item;
+	
+		}
+	else if(item<=root->data)
+			insert(root->left,item);
+		else
+			 insert(root->right,item); 
+   return ; 
+}
+//-------------------------------------------------------------------------
+//void binarysearchtree::insert(int item)
+//This function will call the above function from the main program
+// Input parameters:
+//    item
+// Output parameters:
+//    None
+// Return value:
+//    None
+//-------------------------------------------------------------------------
+void binarysearchtree::insert(int item){
+	insert(root, item);
+	return;
+}
+//-------------------------------------------------------------------------
+//binarysearchtree::binarysearchtree()
+//This is a constractor
+// Input parameters:
+//    None
+// Output parameters:
+//    None
+// Return value:
+//    None
+//-------------------------------------------------------------------------
+binarysearchtree::binarysearchtree(){
+    root = NULL;
+}
+
+
+
+
